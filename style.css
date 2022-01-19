@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  user-select: none;
+}
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.world {
+  overflow: hidden;
+  position: relative;
+}
+
+.hide {
+  display: none;
+}
+
+.ground {
+  --left: 0;
+  bottom: 0;
+  position: absolute;
+  width: 300%;
+  left: calc(var(--left) * 1%);
+}
+
+.starting-header {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5vmin;
+}
+
+.dino {
+  --bottom: 0;
+  position: absolute;
+  bottom: calc(var(--bottom) * 1%);
+}
+
+.cactus {
+  position: absolute;
+  left: calc(var(--left) * 1%);
+  height: 30%;
+  bottom: 0;
+}
