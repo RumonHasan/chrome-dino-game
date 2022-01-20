@@ -25,6 +25,11 @@ export function updateCactus(deltaTime){
 }
 
 // getting the cactus rects in order to check collision
+export function getCactusRects(){
+    return [...document.querySelectorAll('[data-cactus]')].map((cactusElement)=>
+      cactusElement.getBoundingClientRect()
+    )
+}
 
 export function setupCactus(){
     nextCactusTime = CACTUS_MIN_TIME; // should be set to innitial interval time

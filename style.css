@@ -49,3 +49,10 @@ body {
   height: 30%;
   bottom: 0;
 }
+
+.score {
+  position: absolute;
+  font-size: 25px;
+  right: 0;
+  padding: 20px;
+}

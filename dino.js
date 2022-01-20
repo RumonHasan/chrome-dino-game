@@ -42,6 +42,12 @@ function handleDinoRun(deltaTime){
     currentFrameCount += deltaTime;
 }
 
+// get dino head
+export function getDinoHead(){
+    return dinoElement.getBoundingClientRect();
+}
+
+
 // handle jump
 function handleJump(deltaTime) {
     if(!isJumping) return;
