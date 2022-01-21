@@ -1,17 +1,19 @@
 import {updateGround, setupGround} from './ground.js';
 import {updateDino, setupDino, getDinoHead} from './dino.js';
 import {updateCactus, setupCactus, getCactusRects} from './cactus.js';
+import {updateBullet, setupBullet} from './bullet.js';
 
 // variables 
 let prevTime;
+let score = 0;
 const GAME_WORLD_WIDTH = 100;
 const GAME_WORLD_HEIGHT = 30;
-let score = 0;
 
 // element - selectors
 const worldElement = document.querySelector('[data-world]');
 const startElement = document.querySelector('[data-header]');
 const scoreElement = document.querySelector('[data-score]');
+const scoreGameElement = document.querySelector('[data-scoreGame]');
 
 // setting the pixel to scale
 setWorldToScale();
@@ -34,6 +36,8 @@ function updateLoop(time){
     updateDino(deltaTime)
     updateCactus(deltaTime);
     updateScore(deltaTime);
+    updateBullet(deltaTime);
+    // colision and lost functions
     if(checkCollision()) return handleLost();
     // resetting update loop
     prevTime = time;
@@ -41,11 +45,19 @@ function updateLoop(time){
 }
 // main start Game
 function handleStartGame(){
+    score = 0;
     setupDino();
     setupCactus();
     setupGround();
+    startScoreGame();
+    setupBullet();
     startElement.classList.add('hide');
     window.requestAnimationFrame(updateLoop);
+}
+
+function startScoreGame(){
+    scoreGameElement.innerHTML = '';
+    scoreGameElement.classList.add('hide');
 }
 
 function checkCollision(){
@@ -63,18 +75,27 @@ function isCollision(rect1,rect2){
       )
 }
 
-// handlescore
+// updating the score
  function updateScore(deltaTime){
     score += deltaTime * 0.1;
+    scoreElement.textContent = Math.floor(score);
  }
 
-// main lost function
+// main lost function that controls the lost features
 function handleLost(){
-    scoreElement.textContent = 0;
+    displayScore();
     setTimeout(()=>{
+        scoreGameElement.classList.remove('hide');
         document.addEventListener('keydown', handleStartGame, {once:true});
         startElement.classList.remove('hide');
     }, 1000);
+}
+
+function displayScore(){
+    const scoreHeader = document.createElement('div');
+    scoreHeader.classList.add('score-header');
+    scoreHeader.textContent = `Your score is : ${scoreElement.textContent}`;
+    scoreGameElement.appendChild(scoreHeader);
 }
 
 // setting world to scale

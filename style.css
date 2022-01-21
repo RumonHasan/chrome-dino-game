@@ -34,13 +34,15 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 5vmin;
+  font-size: 4vmin;
 }
 
 .dino {
   --bottom: 0;
   position: absolute;
   bottom: calc(var(--bottom) * 1%);
+  height: 60px;
+  width: 60px;
 }
 
 .cactus {
@@ -55,4 +57,24 @@ body {
   font-size: 25px;
   right: 0;
   padding: 20px;
+}
+
+.score-details {
+  position: absolute;
+  font-size: 4vmin;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+}
+
+.bullet {
+  --left: 0;
+  position: absolute;
+  left: calc(var(--left) * 1%);
+  bottom: 30px;
+  width: 30px;
+  height: 10px;
+  background-color: #343131;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
